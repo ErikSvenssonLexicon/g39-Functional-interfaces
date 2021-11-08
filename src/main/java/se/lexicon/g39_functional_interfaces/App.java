@@ -18,14 +18,16 @@ public class App
     	
     };
     static StringOperator concatStrings = new StringOperator();
+    //  Argument List     Arrow     Body
+    static DoStringStuff concatLambda = (s1, s2) -> s1 + " " + s2;		
+    static Action printAction = string -> System.out.println(string);
 	
     public static void main( String[] args )
     {        
         String firstName = "Erik";
         String lastName = "Svensson";
-        //                               Argument List     Arrow     Body
-        DoStringStuff concatLambda = (String s1, String s2) -> s1.concat(s2);		
-        		
+        
+        
         String result1 = doStringStuff(firstName, lastName, concatLambda);
         String result2 = doStringStuff(firstName, lastName, getBiggestString);
         String result3 = doStringStuff(firstName, lastName, new DoStringStuff() {
@@ -37,9 +39,9 @@ public class App
         	
         });
         
-        System.out.println(result1);
-        System.out.println(result2);
-        System.out.println(result3);
+        printAction.apply(result1);
+        printAction.apply(result2);
+        printAction.apply(result3);
         
     }
     
