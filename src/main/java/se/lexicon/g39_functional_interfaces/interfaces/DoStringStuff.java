@@ -1,4 +1,4 @@
-package se.lexicon.g39_functional_interfaces;
+package se.lexicon.g39_functional_interfaces.interfaces;
 
 @FunctionalInterface
 public interface DoStringStuff {

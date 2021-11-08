@@ -2,6 +2,13 @@ package se.lexicon.g39_functional_interfaces;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import se.lexicon.g39_functional_interfaces.implementations.StringOperator;
+import se.lexicon.g39_functional_interfaces.interfaces.Action;
+import se.lexicon.g39_functional_interfaces.interfaces.Calculator;
+import se.lexicon.g39_functional_interfaces.interfaces.Conditional;
+import se.lexicon.g39_functional_interfaces.interfaces.DoStringStuff;
+import se.lexicon.g39_functional_interfaces.interfaces.IntRandomSupplier;
+
 /**
  * 
  * @author Erik
@@ -27,9 +34,25 @@ public class App
     static Action printAction = string -> System.out.println(string);
     
     static IntRandomSupplier supplier = () -> ThreadLocalRandom.current().nextInt();
+    
+    static Calculator calculator = (num1, num2, operator) -> {
+		switch(operator) {
+    		case "+":
+    			return num1 + num2;
+    		case "-":
+    			return num1 - num2;
+    		case "*":
+    			return num1 * num2;
+    		case "/":
+    			return num1 / num2;
+			default:
+				return 0;
+		}
+	};
 	
     public static void main( String[] args )
-    {        
+    {    	
+    	
         String firstName = "Erik";
         String lastName = "Svensson";
         

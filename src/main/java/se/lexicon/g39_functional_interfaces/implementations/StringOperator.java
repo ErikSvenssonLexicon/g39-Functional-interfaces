@@ -1,4 +1,6 @@
-package se.lexicon.g39_functional_interfaces;
+package se.lexicon.g39_functional_interfaces.implementations;
+
+import se.lexicon.g39_functional_interfaces.interfaces.DoStringStuff;
 
 public class StringOperator implements DoStringStuff{
 
