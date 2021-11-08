@@ -1,5 +1,7 @@
 package se.lexicon.g39_functional_interfaces;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * 
  * @author Erik
@@ -18,9 +20,13 @@ public class App
     	
     };
     static StringOperator concatStrings = new StringOperator();
-    //  Argument List     Arrow     Body
-    static DoStringStuff concatLambda = (s1, s2) -> s1 + " " + s2;		
+    //                  Argument List     Arrow     Body
+    static DoStringStuff concatLambda = (s1, s2) -> s1 + " " + s2;	
+    
+    //                       Single param ->   Body
     static Action printAction = string -> System.out.println(string);
+    
+    static IntRandomSupplier supplier = () -> ThreadLocalRandom.current().nextInt();
 	
     public static void main( String[] args )
     {        
@@ -29,7 +35,7 @@ public class App
         
         
         String result1 = doStringStuff(firstName, lastName, concatLambda);
-        String result2 = doStringStuff(firstName, lastName, getBiggestString);
+        String result2 = doStringStuff(firstName, lastName, (s1, s2) -> s1.length() >= s2.length() ? s1 : s2);
         String result3 = doStringStuff(firstName, lastName, new DoStringStuff() {
 
 			@Override
@@ -42,6 +48,12 @@ public class App
         printAction.apply(result1);
         printAction.apply(result2);
         printAction.apply(result3);
+        
+        Conditional isEven = i -> i % 2 == 0;
+        
+        
+        System.out.println(isEven.testInt(supplier.generate()));
+        System.out.println(isEven.testInt(supplier.generate()));
         
     }
     
